@@ -6,6 +6,7 @@ class MainController
 {
     public function index()
     {
-
+        echo'fff';
+        die();
     }
 }

@@ -1,8 +1,12 @@
 <?php
 
+use Controllers\MainController;
+
 require "bootstrap.php";
 
 
+$main = new MainController();
+$main->index();
 $user = User::Create(
     [
 //        'name' => "Ahmed Khan",
