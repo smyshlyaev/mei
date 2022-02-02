@@ -47,13 +47,19 @@ class TableService implements TableServiceInterface
         }
     }
 
-    public function addTotal()
+    public function createTotal()
     {
         $task = $this->spreadsheet->getActiveSheet();
-        $task->setCellValue('C25', '2Hello World !');
+        $height = $task->getHighestRow();
+        $task->setCellValue("B$height", 'Total:');
+        $cells = ['C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+        foreach($cells as $cell) {
+            $task->setCellValue(
+                "$cell$height", '=SUM(' . $cell . '4:' . $cell . $height . ')');
+        }
+
         $writer = new Xlsx($this->spreadsheet);
         $writer->save('result.xlsx');
-        dd('add total');
     }
 
     /**

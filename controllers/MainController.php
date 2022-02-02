@@ -45,12 +45,5 @@ class MainController
         $this->tableMigration->up();
         $this->tableService->seedTask();
         $this->tableService->addTotal();
-
-        $spreadsheet = new Spreadsheet();
-        $sheet = $spreadsheet->getActiveSheet();
-        $sheet->setCellValue('A1', '2Hello World !');
-
-        $writer = new Xlsx($spreadsheet);
-        $writer->save('hello world.xlsx');
     }
 }
