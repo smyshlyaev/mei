@@ -1,10 +1,12 @@
 {
     "require": {
-        "illuminate/database": "^8.81"
+        "illuminate/database": "^8.81",
+        "vlucas/phpdotenv": "^5.4"
     },
     "autoload": {
         "classmap": [
             "classes",
+            "repositories",
             "controllers"
         ]
     }
