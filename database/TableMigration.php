@@ -15,11 +15,11 @@ class TableMigration implements MigrationInterface
 
         Manager::schema()->create('table', function ($table) {
             $table->increments('id');
-            $table->integer('table_id');
-            $table->string('company');
-            $table->enum('fact_or_forecast', ['fact', 'forecast']);
-            $table->enum('olign_or_ooil', ['olign', 'ooil']);
-            $table->date('date');
+            $table->integer('table_id')->nullable();
+            $table->string('company')->nullable();
+            $table->enum('fact_or_forecast', ['fact', 'forecast'])->nullable();
+            $table->enum('olign_or_ooil', ['olign', 'ooil'])->nullable();
+            $table->date('date')->nullable();
         });
     }
 

@@ -7,27 +7,26 @@ use Illuminate\Database\Capsule\Manager;
 
 class MainController
 {
-    /**
-     * @var Manager
-     */
-    private $manager;
+    private Manager $manager;
 
-    /**
-     * @var MigrationInterface
-     */
-    private $tableMigration;
+    private MigrationInterface $tableMigration;
+
+    private TableRepositoryInterface $tableRepository;
 
     /**
      * @param Manager $manager
      * @param MigrationInterface $tableMigration
+     * @param TableRepositoryInterface $tableRepository
      */
     public function __construct(
         Manager $manager,
-        MigrationInterface $tableMigration
+        MigrationInterface $tableMigration,
+        TableRepositoryInterface $tableRepository
     )
     {
         $this->manager = $manager;
         $this->tableMigration = $tableMigration;
+        $this->tableRepository = $tableRepository;
     }
 
     /**
@@ -36,5 +35,6 @@ class MainController
     public function index()
     {
         $this->tableMigration->up();
+        $this->tableRepository->test();
     }
 }
