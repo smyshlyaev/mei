@@ -44,5 +44,7 @@ class MainController
         $this->tableMigration->up();
         $this->tableService->seedTask();
         $this->tableService->createTotal();
+
+        echo 'Выполнение скрипта завершено успешно' . PHP_EOL;
     }
 }
