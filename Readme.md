@@ -6,9 +6,9 @@
 
 Установка скрипта:
 
-git clone git@github.com:smyshlyaev/mei.git
-composer install
-cp .env-example .env
+git clone git@github.com:smyshlyaev/mei.git  
+composer install  
+cp .env-example .env  
 
 Заполните в файле .env реквизиты для подключения к своей базе данных.
 
