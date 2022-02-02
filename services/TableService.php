@@ -4,12 +4,16 @@ namespace Services;
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Repositories\TableRepository;
 
 class TableService implements TableServiceInterface
 {
     private TableRepository $tableRepository;
+
+    private Spreadsheet $spreadsheet;
 
     public function __construct()
     {
@@ -21,7 +25,9 @@ class TableService implements TableServiceInterface
      */
     public function seedTask()
     {
-        $task = IOFactory::load("task.xlsx")->getActiveSheet();
+        $this->spreadsheet = IOFactory::load("task.xlsx");
+        $task = $this->spreadsheet->getActiveSheet();
+
         for ($row = 4; $row <= $task->getHighestRow() - 1; $row++) {
             $cells = [
                 ['C1','C2','C3'],
@@ -39,6 +45,15 @@ class TableService implements TableServiceInterface
                 );
             }
         }
+    }
+
+    public function addTotal()
+    {
+        $task = $this->spreadsheet->getActiveSheet();
+        $task->setCellValue('C25', '2Hello World !');
+        $writer = new Xlsx($this->spreadsheet);
+        $writer->save('result.xlsx');
+        dd('add total');
     }
 
     /**
@@ -75,7 +90,7 @@ class TableService implements TableServiceInterface
      */
     private function getDate(string $cell, Worksheet $task)
     {
-        $value = $task->getCell("C3")->getValue();
+        $value = $task->getCell($cell)->getValue();
 
         return Date::excelToDateTimeObject($value)->format('Y-m-d');
     }
