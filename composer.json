@@ -1,13 +1,15 @@
 {
     "require": {
         "illuminate/database": "^8.81",
-        "vlucas/phpdotenv": "^5.4"
+        "vlucas/phpdotenv": "^5.4",
+        "phpoffice/phpspreadsheet": "^1.21"
     },
     "autoload": {
         "classmap": [
             "database",
             "models",
             "repositories",
+            "services",
             "controllers"
         ]
     }
