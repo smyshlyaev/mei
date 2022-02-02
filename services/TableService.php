@@ -5,16 +5,23 @@ namespace Services;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
+use Repositories\TableRepository;
 
 class TableService implements TableServiceInterface
 {
+    private TableRepository $tableRepository;
+
+    public function __construct()
+    {
+        $this->tableRepository = new TableRepository();
+    }
+
     /**
      * @return void
      */
-    public function saveTask()
+    public function seedTask()
     {
         $task = IOFactory::load("task.xlsx")->getActiveSheet();
-        $items = [];
         for ($row = 4; $row <= $task->getHighestRow() - 1; $row++) {
             $cells = [
                 ['C1','C2','C3'],
@@ -27,11 +34,11 @@ class TableService implements TableServiceInterface
                 ['G1','I2','J3'],
             ];
             foreach ($cells as $cell) {
-                $item = $this->getItem($row, $task, ...$cell);
-                dd($item);
+                $this->tableRepository->create(
+                    $this->getItem($row, $task, ...$cell)
+                );
             }
         }
-        dd($items);
     }
 
     /**

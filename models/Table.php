@@ -12,6 +12,11 @@ class Table extends Eloquent
     public $timestamps = false;
 
     protected $fillable = [
-        'table_id'
+        'value',
+        'table_id',
+        'company',
+        'fact_or_forecast',
+        'oliq_or_qoil',
+        'date'
     ];
 }

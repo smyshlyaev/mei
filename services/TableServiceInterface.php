@@ -4,5 +4,5 @@ namespace Services;
 
 interface TableServiceInterface
 {
-    public function saveTask();
+    public function seedTask();
 }

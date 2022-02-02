@@ -7,13 +7,8 @@ use Models\Table;
 
 class TableRepository implements TableRepositoryInterface
 {
-    public function test()
+    public function create($item)
     {
-        $table = Table::Create(
-            [
-                'table_id' => 333,
-            ]
-        );
-        echo 'test' . PHP_EOL;
+        return Table::Create($item);
     }
 }
