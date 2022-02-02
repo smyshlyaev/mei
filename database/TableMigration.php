@@ -11,9 +11,9 @@ class TableMigration implements MigrationInterface
      */
     public function up()
     {
-        Manager::schema()->dropIfExists('table');
+        Manager::schema()->dropIfExists('tables');
 
-        Manager::schema()->create('table', function ($table) {
+        Manager::schema()->create('tables', function ($table) {
             $table->increments('id');
             $table->integer('value')->nullable();
             $table->integer('table_id')->nullable();

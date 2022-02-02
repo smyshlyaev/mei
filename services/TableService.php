@@ -30,14 +30,14 @@ class TableService implements TableServiceInterface
 
         for ($row = 4; $row <= $task->getHighestRow() - 1; $row++) {
             $cells = [
-                ['C1','C2','C3'],
-                ['C1','C2','D3'],
-                ['C1','E2','E3'],
-                ['C1','E2','F3'],
-                ['C1','G2','G3'],
-                ['G1','G2','H3'],
-                ['G1','I2','I3'],
-                ['G1','I2','J3'],
+                ['C', 'C1', 'C2', 'C3'],
+                ['D', 'C1', 'C2', 'D3'],
+                ['E', 'C1', 'E2', 'E3'],
+                ['F', 'C1', 'E2', 'F3'],
+                ['G', 'G1', 'G2', 'G3'],
+                ['H', 'G1', 'G2', 'H3'],
+                ['I', 'G1', 'I2', 'I3'],
+                ['J', 'G1', 'I2', 'J3'],
             ];
             foreach ($cells as $cell) {
                 $this->tableRepository->create(
@@ -57,7 +57,7 @@ class TableService implements TableServiceInterface
         $height = $task->getHighestRow();
         $task->setCellValue("B$height", 'Total:');
         $cells = ['C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
-        foreach($cells as $cell) {
+        foreach ($cells as $cell) {
             $task->setCellValue(
                 "$cell$height", '=SUM(' . $cell . '4:' . $cell . $height . ')');
         }
@@ -77,13 +77,14 @@ class TableService implements TableServiceInterface
     private function getItem(
         int       $row,
         Worksheet $task,
+        string    $value,
         string    $factOrForecastCell,
         string    $oliqOrQoilCell,
         string    $dateCell
     ): array
     {
         $item = [];
-        $item['value'] = $task->getCell("C$row")->getValue();
+        $item['value'] = $task->getCell("$value$row")->getValue();
         $item['table_id'] = $task->getCell("A$row")->getValue();
         $item['company'] = $task->getCell("B$row")->getValue();
         $item['fact_or_forecast'] = $task->getCell($factOrForecastCell)->getValue();
