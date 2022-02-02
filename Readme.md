@@ -7,8 +7,8 @@
 Установка скрипта:
 
 ```
-git clone git@github.com:smyshlyaev/mei.git  
-composer install  
+git clone git@github.com:smyshlyaev/mei.git &&  
+composer install &&  
 cp .env-example .env
 ```  
 
