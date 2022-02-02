@@ -1,12 +1,12 @@
 <?php
 require "vendor/autoload.php";
 
-use Illuminate\Database\Capsule\Manager as Capsule;
+use Illuminate\Database\Capsule\Manager;
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$capsule = new Capsule();
+$manager = new Manager();
 
 $requisites = [
     'driver' => $_ENV['DB_DRIVER'],
@@ -18,9 +18,7 @@ $requisites = [
     'collation' => $_ENV['DB_COLLATION'],
     'prefix' => $_ENV['DB_PREFIX'],
 ];
-$capsule->addConnection($requisites);
+$manager->addConnection($requisites);
 
-$capsule->setAsGlobal();
-$capsule->bootEloquent();
-
-Capsule::schema()->dropAllTables();
+$manager->setAsGlobal();
+$manager->bootEloquent();

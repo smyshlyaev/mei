@@ -1,22 +1,21 @@
 <?php
 
 use Controllers\MainController;
+use Database\TableMigration;
+use Illuminate\Database\Capsule\Manager;
 
 require "bootstrap.php";
 
 
-$main = new MainController();
+$main = new MainController(
+    new Manager(),
+    new TableMigration()
+);
 $main->index();
+
+die();
 $user = User::Create(
     [
-//        'name' => "Ahmed Khan",
-        'email' => "ahmed22.khan@lbs.com",
-//        'password' => password_hash("ahmedkhan", PASSWORD_BCRYPT),
+        'email' => "ahmed33.khan@lbs.com",
     ]
 );
-//
-//print_r($user->todo()->create([
-//    'todo' => "Working with Eloquent Without PHP",
-//    'category' => "eloquent",
-//    'description' => "Testing the work using eloquent without laravel"
-//]));
