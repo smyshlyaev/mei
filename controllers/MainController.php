@@ -43,7 +43,7 @@ class MainController
     public function index()
     {
         $this->tableMigration->up();
-        $this->tableService->test();
+        $this->tableService->saveTask();
         $this->tableRepository->test();
 
         $spreadsheet = new Spreadsheet();

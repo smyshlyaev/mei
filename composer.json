@@ -12,5 +12,8 @@
             "services",
             "controllers"
         ]
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^6.0"
     }
 }

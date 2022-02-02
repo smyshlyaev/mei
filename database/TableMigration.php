@@ -18,7 +18,7 @@ class TableMigration implements MigrationInterface
             $table->integer('table_id')->nullable();
             $table->string('company')->nullable();
             $table->enum('fact_or_forecast', ['fact', 'forecast'])->nullable();
-            $table->enum('olign_or_ooil', ['olign', 'ooil'])->nullable();
+            $table->enum('olign_or_qoil', ['olign', 'ooil'])->nullable();
             $table->date('date')->nullable();
         });
     }
