@@ -4,8 +4,6 @@ namespace Controllers;
 
 use Database\MigrationInterface;
 use Illuminate\Database\Capsule\Manager;
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Services\TableService;
 
 class MainController
@@ -44,6 +42,6 @@ class MainController
     {
         $this->tableMigration->up();
         $this->tableService->seedTask();
-        $this->tableService->addTotal();
+        $this->tableService->createTotal();
     }
 }

@@ -47,6 +47,10 @@ class TableService implements TableServiceInterface
         }
     }
 
+    /**
+     * @return void
+     * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
+     */
     public function createTotal()
     {
         $task = $this->spreadsheet->getActiveSheet();
