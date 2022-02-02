@@ -5,6 +5,7 @@ namespace Controllers;
 use Database\MigrationInterface;
 use Illuminate\Database\Capsule\Manager;
 use Services\TableService;
+use Services\TableServiceInterface;
 
 class MainController
 {
@@ -14,19 +15,19 @@ class MainController
 
     private TableRepositoryInterface $tableRepository;
 
-    private TableService $tableService;
+    private TableServiceInterface $tableService;
 
     /**
      * @param Manager $manager
      * @param MigrationInterface $tableMigration
      * @param TableRepositoryInterface $tableRepository
-     * @param TableService $tableService
+     * @param TableServiceInterface $tableService
      */
     public function __construct(
         Manager $manager,
         MigrationInterface $tableMigration,
         TableRepositoryInterface $tableRepository,
-        TableService $tableService
+        TableServiceInterface $tableService
     )
     {
         $this->manager = $manager;
